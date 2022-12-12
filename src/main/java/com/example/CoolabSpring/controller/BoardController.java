@@ -34,9 +34,9 @@ public class BoardController {
     }
 
     @PostMapping("/add")
-    public String add(@RequestParam String title, @RequestParam String content,
-                      @RequestParam String name, RedirectAttributes redirectAttributes){
-        Board newBoard = new Board(title, content, name);
+    public String add(@RequestParam String teamname, @RequestParam int maxpeople,
+                      @RequestParam String subscription, RedirectAttributes redirectAttributes){
+        Board newBoard = new Board(teamname, maxpeople, subscription);
         Long boardId = boardService.add(newBoard);
         System.out.println("boardId = " + boardId);
 
@@ -55,14 +55,14 @@ public class BoardController {
     }
 
     @PostMapping("/{boardId}/edit")
-    public String editForm(@PathVariable Long boardId, @RequestParam String title,
-                           @RequestParam String content, @RequestParam String name)
+    public String editForm(@PathVariable Long boardId, @RequestParam String teamname,
+                           @RequestParam int maxpeople, @RequestParam String subscription)
     {
 
         Board findBoard = boardService.findById(boardId);
-        findBoard.setTitle(title);
-        findBoard.setContent(content);
-        findBoard.setName(name);
+        findBoard.setTeamname(teamname);
+        findBoard.setMaxpeople(maxpeople);
+        findBoard.setSubscription(subscription);
 
         boardService.update(findBoard);
 

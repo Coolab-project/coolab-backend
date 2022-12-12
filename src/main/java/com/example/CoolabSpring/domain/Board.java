@@ -11,19 +11,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Board {
     private Long boardId;
-    private String title;
-    private String content;
+    private String teamname;
+    private int maxpeople;
     private LocalDateTime createDate;
     private Integer read;
-    private String name;
+    private String subscription;
 
     private Long memberId;
 
 
-    public Board(String title, String content, String name) {
-        this.title = title;
-        this.content = content;
-        this.name = name;
+    public Board(String teamname, int maxpeople, String subscription) {
+        this.teamname = teamname;
+        this.maxpeople = maxpeople;
+        this.subscription = subscription;
     }
 
 }
