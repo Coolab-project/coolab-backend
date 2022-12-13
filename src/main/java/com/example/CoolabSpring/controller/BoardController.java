@@ -1,12 +1,19 @@
 package com.example.CoolabSpring.controller;
 
 import com.example.CoolabSpring.domain.Board;
+import com.example.CoolabSpring.domain.Teams;
+import com.example.CoolabSpring.domain.User;
 import com.example.CoolabSpring.service.BoardServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
+import org.json.simple.JSONObject;
 
 @Controller
 @RequestMapping("/boards")
@@ -35,15 +42,19 @@ public class BoardController {
 
     @PostMapping("/add")
     public String add(@RequestParam String teamname, @RequestParam int maxpeople,
-                      @RequestParam String subscription, RedirectAttributes redirectAttributes){
-        Board newBoard = new Board(teamname, maxpeople, subscription);
+                      @RequestParam String subscription, @RequestParam int template, RedirectAttributes redirectAttributes){
+        Board newBoard = new Board(teamname, maxpeople, subscription, template);
         Long boardId = boardService.add(newBoard);
         System.out.println("boardId = " + boardId);
-
         redirectAttributes.addAttribute("boardId", boardId);
         redirectAttributes.addAttribute("status", true);
 
-        return "redirect:/boards/{boardId}";
+        JSONObject obj = new JSONObject();
+        obj.put("teamname", teamname);
+        obj.put("maxpeople", maxpeople);
+        obj.put("subscription", subscription);
+        obj.put("tempalte", template);
+        return obj.toJSONString();
     }
 
     @GetMapping("/{boardId}/edit")
@@ -75,7 +86,19 @@ public class BoardController {
         return "redirect:/boards";
     }
 
+    @GetMapping("/getuser")
+    public String getUser(Model model, @PathVariable long userid) {
+        model.addAttribute("users", boardService.finduser(userid));
+        return "/getuser";
 
+    }
 
+    @GetMapping("/getuserteam")
+    public String getUserTeam(Model model, @PathVariable long userid) {
+        model.addAttribute("userteam", boardService.finduserteam(userid));
+        String teamsList = boardService.finduserteam(userid).toString();
+        System.out.println(teamsList);
+        return teamsList;
+    }
 
 }

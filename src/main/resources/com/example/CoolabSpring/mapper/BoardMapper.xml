@@ -19,12 +19,12 @@
 
     <insert id ="save" parameterType="com.example.CoolabSpring.domain.Board" useGeneratedKeys="true" keyProperty="boardId">
 
-        INSERT INTO tbl_board (title, content, name) VALUES (#{title}, #{content}, #{name});
+        INSERT INTO tbl_board (teamname, maxpeople, subscription, template) VALUES (#{teamname}, #{maxpeople}, #{subscription}, #{template});
     </insert>
 
     <update id ="update" parameterType="com.example.CoolabSpring.domain.Board">
         UPDATE tbl_board
-        SET title = #{title}, content = #{content}, name = #{name}
+        SET teamname = #{teamname}, maxpeople = #{content}, subscription = #{subscription}, template = #{template}
         WHERE boardId = #{boardId};
     </update>
 
@@ -34,5 +34,15 @@
         WHERE boardId = #{boardId};
     </delete>
 
+    <select id="finduser" resultType="com.example.CoolabSpring.domain.User">
+        SELECT * FROM tbl_user WHERE userid=#{userid};
+    </select>
 
+    <insert id ="saveuser" parameterType="com.example.CoolabSpring.domain.User" useGeneratedKeys="true" keyProperty="userid">
+        INSERT INTO tbl_board (name, email, image) VALUES (#{name}, #{email}, #{image});
+    </insert>
+
+    <select id="finduserteam" parameterType="com.example.CoolabSpring.domain.Teams">
+        SELECT * FROM tbl_team WHERE userid = #{userid};
+    </select>
 </mapper>

@@ -1,9 +1,10 @@
 DROP TABLE IF EXISTS tbl_board;
 CREATE TABLE tbl_board(
 boardId int auto_increment,
-title varchar (30) not null,
-content varchar (30) not null,
-name varchar (30) not null,
+teamname varchar (30) not null,
+maxpeople number (30) not null,
+subscription varchar (256) not null,
+template number (2) not null,
 primary key(boardId)
 );
 
@@ -15,14 +16,30 @@ CREATE TABLE tbl_user(
  image varchar (512) not null
 );
 
+DROP TABLE IF EXISTS tbl_team;
+CREATE TABLE tbl_team (
+    teamid int auto_increment,
+    userid int (100) not null,
+    boardid int (100) not null,
+    primary key(teamid),
+    foreign key(userid) references tbl_user(userid),
+    foreign key(boardid) references tbl_board(boardId)
+);
+
 INSERT INTO tbl_user(name,email,image) VALUES('user1', 'user1@gmail.com', '');
+INSERT INTO tbl_user(name,email,image) VALUES('user2', 'user2@gmail.com', '');
 
-INSERT INTO tbl_board(title, content, name) VALUES('title1', 'content1', 'name1');
-INSERT INTO tbl_board(title, content, name) VALUES('title2', 'content2', 'name2');
-INSERT INTO tbl_board(title, content, name) VALUES('title3', 'content3', 'name3');
-INSERT INTO tbl_board(title, content, name) VALUES('title4', 'content4', 'name4');
-INSERT INTO tbl_board(title, content, name) VALUES('title5', 'content5', 'name5');
-INSERT INTO tbl_board(title, content, name) VALUES('title6', 'content6', 'name6');
-INSERT INTO tbl_board(title, content, name) VALUES('title7', 'content7', 'name7');
-INSERT INTO tbl_board(title, content, name) VALUES('title8', 'content8', 'name8');
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team1', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team2', 10, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team3', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team4', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team5', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team6', 10, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team7', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team8', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team9', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team10', 3, 'subscription', 1);
 
+INSERT INTO tbl_team(userid, boardid) VALUES(1,1);
+INSERT INTO tbl_team(userid, boardid) VALUES(1,2);
+INSERT INTO tbl_team(userid, boardid) VALUES(1,7);
