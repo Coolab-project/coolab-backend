@@ -42,7 +42,7 @@
         INSERT INTO tbl_board (name, email, image) VALUES (#{name}, #{email}, #{image});
     </insert>
 
-    <select id="finduserteam" parameterType="com.example.CoolabSpring.domain.Teams">
-        SELECT * FROM tbl_team WHERE userid = #{userid};
+    <select id="finduserteam" parameterType="com.example.CoolabSpring.domain.Teams" >
+        SELECT B.teamname, B.maxpeople, B.subscription, B.template FROM tbl_board B, tbl_team T WHERE T.boardid = B.boardId and T.userid = #{userid}
     </select>
 </mapper>

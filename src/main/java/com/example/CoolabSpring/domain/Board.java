@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Board {
     private Long boardId;
+    private Long userid;
     private String teamname;
     private int maxpeople;
     private int template;
@@ -27,9 +28,5 @@ public class Board {
         this.subscription = subscription;
         this.template = template;
     }
-    public Long findid() {
-        return memberId;
-    }
-
 }
 

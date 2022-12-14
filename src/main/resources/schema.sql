@@ -29,7 +29,7 @@ CREATE TABLE tbl_team (
 INSERT INTO tbl_user(name,email,image) VALUES('user1', 'user1@gmail.com', '');
 INSERT INTO tbl_user(name,email,image) VALUES('user2', 'user2@gmail.com', '');
 
-INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team1', 5, 'subscription', 1);
+INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team1', 5, 'subscriptions', 1);
 INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team2', 10, 'subscription', 1);
 INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team3', 5, 'subscription', 1);
 INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team4', 5, 'subscription', 1);

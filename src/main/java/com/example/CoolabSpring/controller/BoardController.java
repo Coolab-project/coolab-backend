@@ -4,15 +4,14 @@ import com.example.CoolabSpring.domain.Board;
 import com.example.CoolabSpring.domain.Teams;
 import com.example.CoolabSpring.domain.User;
 import com.example.CoolabSpring.service.BoardServices;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-
 import org.json.simple.JSONObject;
 
 @Controller
@@ -94,9 +93,16 @@ public class BoardController {
     }
 
     @GetMapping("/getuserteam")
-    public String getUserTeam(Model model, @PathVariable long userid) {
+    public String getUserTeam(Model model, @PathVariable long userid)  {
         model.addAttribute("userteam", boardService.finduserteam(userid));
-        String teamsList = boardService.finduserteam(userid).toString();
+        ObjectMapper mapper = new ObjectMapper();
+        String teamsList = null;
+        try {
+            teamsList = mapper.writeValueAsString(model);
+        }
+        catch(JsonProcessingException j) {
+            j.printStackTrace();
+        }
         System.out.println(teamsList);
         return teamsList;
     }
