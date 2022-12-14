@@ -38,19 +38,14 @@ public class BoardController {
 
     @PostMapping("/add")
     public String add(@RequestParam String teamname, @RequestParam int maxpeople,
-                      @RequestParam String subscription, @RequestParam int template, RedirectAttributes redirectAttributes){
+                      @RequestParam String subscription, @RequestParam boolean template, RedirectAttributes redirectAttributes){
         Board newBoard = new Board(teamname, maxpeople, subscription, template);
         Long boardId = boardService.add(newBoard);
         System.out.println("boardId = " + boardId);
         redirectAttributes.addAttribute("boardId", boardId);
         redirectAttributes.addAttribute("status", true);
 
-        JSONObject obj = new JSONObject();
-        obj.put("teamname", teamname);
-        obj.put("maxpeople", maxpeople);
-        obj.put("subscription", subscription);
-        obj.put("tempalte", template);
-        return obj.toJSONString();
+        return "redirect:/boards/{boardId}";
     }
 
     @GetMapping("/{boardId}/edit")
@@ -97,6 +92,7 @@ public class BoardController {
         String teamsList = null;
         try {
             teamsList = mapper.writeValueAsString(model);
+            System.out.println(teamsList);
         }
         catch(JsonProcessingException j) {
             j.printStackTrace();
@@ -104,5 +100,4 @@ public class BoardController {
         System.out.println(teamsList);
         return teamsList;
     }
-
 }

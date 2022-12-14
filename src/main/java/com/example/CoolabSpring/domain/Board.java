@@ -14,7 +14,7 @@ public class Board {
     private Long userid;
     private String teamname;
     private int maxpeople;
-    private int template;
+    private boolean template;
     private LocalDateTime createDate;
     private Integer read;
     private String subscription;
@@ -22,7 +22,7 @@ public class Board {
     private Long memberId;
 
 
-    public Board(String teamname, int maxpeople, String subscription, int template) {
+    public Board(String teamname, int maxpeople, String subscription, boolean template) {
         this.teamname = teamname;
         this.maxpeople = maxpeople;
         this.subscription = subscription;

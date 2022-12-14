@@ -18,7 +18,6 @@
     </select>
 
     <insert id ="save" parameterType="com.example.CoolabSpring.domain.Board" useGeneratedKeys="true" keyProperty="boardId">
-
         INSERT INTO tbl_board (teamname, maxpeople, subscription, template) VALUES (#{teamname}, #{maxpeople}, #{subscription}, #{template});
     </insert>
 

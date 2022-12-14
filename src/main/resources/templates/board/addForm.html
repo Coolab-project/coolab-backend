@@ -18,20 +18,24 @@
 
     <form action="board.html" th:action  method="post">
         <div>
-            <label for="title">제목</label>
-            <input type="text" id="title" name="title" class="formcontrol" placeholder="제목을 입력해주세요">
+            <label for="teamname">teamname</label>
+            <input type="text" id="teamname" name="teamname" class="form-control" placeholder="제목을 입력해주세요">
         </div>
         <div>
-            <label for="content">본문</label>
-            <input type="text" id="content" name="content" class="form-control"
+            <label for="maxpeople">maxpeople</label>
+            <input type="text" id="maxpeople" name="maxpeople" class="form-control"
                    placeholder="본문을 입력해주세요">
         </div>
         <div>
-            <label for="name">글쓴이</label>
-            <input type="text" id="name" name="name" class="form-control"
+            <label for="subscription">subscription</label>
+            <input type="text" id="subscription" name="subscription" class="form-control"
                    placeholder="닉네임을 입력해주세요">
         </div>
-
+        <div>
+            <label for="template">template</label>
+            <input type="text" id="template" name="template" class="form-control"
+                   placeholder="템플릿 여부를 입력해주세요">
+        </div>
         <hr class="my-4">
         <div class="row">
             <div class="col">
