@@ -41,5 +41,3 @@ INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team9
 INSERT INTO tbl_board(teamname, maxpeople, subscription, template) VALUES('team10', 3, 'subscription', TRUE);
 
 INSERT INTO tbl_team(userid, boardid) VALUES(1,1);
-INSERT INTO tbl_team(userid, boardid) VALUES(1,2);
-INSERT INTO tbl_team(userid, boardid) VALUES(1,7);

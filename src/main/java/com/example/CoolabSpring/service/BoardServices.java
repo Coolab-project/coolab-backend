@@ -1,6 +1,7 @@
 package com.example.CoolabSpring.service;
 
 import com.example.CoolabSpring.domain.Board;
+import com.example.CoolabSpring.domain.Teams;
 import com.example.CoolabSpring.domain.User;
 import com.example.CoolabSpring.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,7 @@ public class BoardServices {
     public User finduser(Long userid) {
         return boardMapper.finduser(userid);
     }
-    public Long finduserteam(Long userid) {
+    public Teams finduserteam(Long userid) {
         return boardMapper.finduserteam(userid);
     }
 }

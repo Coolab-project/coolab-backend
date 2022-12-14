@@ -21,14 +21,22 @@ public class BoardController {
     @GetMapping
     public String main(Model model){
         model.addAttribute("boards", boardService.boardList());
-
         return "/board/boards";
     }
 
     @GetMapping("/{boardId}")
     public String board(@PathVariable long boardId, Model model){
         model.addAttribute("board", boardService.findById(boardId));
-
+        ObjectMapper mapper = new ObjectMapper();
+        String teamsList = null;
+        try {
+            teamsList = mapper.writeValueAsString(model);
+            System.out.println(teamsList);
+        }
+        catch(JsonProcessingException j) {
+            j.printStackTrace();
+        }
+        System.out.println(teamsList);
         return "/board/board";
     }
     @GetMapping("/add")
@@ -44,7 +52,6 @@ public class BoardController {
         System.out.println("boardId = " + boardId);
         redirectAttributes.addAttribute("boardId", boardId);
         redirectAttributes.addAttribute("status", true);
-
         return "redirect:/boards/{boardId}";
     }
 
@@ -84,20 +91,20 @@ public class BoardController {
 
     }
 
-    @RequestMapping(value = "/getuserteam", method = RequestMethod.GET)
+    @RequestMapping(value = {"/getuserteam/{userid}", "/getuseritem"}, method = RequestMethod.GET)
     @ResponseBody
-    public String getuserteam(Model model, @PathVariable long userid)  {
+    public String getuserteam(Model model, @PathVariable(required = false) long userid)  {
         model.addAttribute("userteam", boardService.finduserteam(userid));
         ObjectMapper mapper = new ObjectMapper();
         String teamsList = null;
         try {
-            teamsList = mapper.writeValueAsString(model);
             System.out.println(teamsList);
+            teamsList = mapper.writeValueAsString(model);
         }
         catch(JsonProcessingException j) {
             j.printStackTrace();
         }
         System.out.println(teamsList);
-        return teamsList;
+        return "/board/userteam";
     }
 }

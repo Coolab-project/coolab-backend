@@ -25,6 +25,6 @@ public interface BoardMapper{
 
     User finduser(Long userid);
 
-    Long finduserteam(Long userid);
+    Teams finduserteam(Long userid);
 
 }
