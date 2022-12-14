@@ -1,13 +1,10 @@
 package com.example.CoolabSpring.controller;
 
 import com.example.CoolabSpring.domain.Board;
-import com.example.CoolabSpring.domain.Teams;
-import com.example.CoolabSpring.domain.User;
 import com.example.CoolabSpring.service.BoardServices;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -92,8 +89,9 @@ public class BoardController {
 
     }
 
-    @GetMapping("/getuserteam")
-    public String getUserTeam(Model model, @PathVariable long userid)  {
+    @RequestMapping(value = "/getuserteam", method = RequestMethod.GET)
+    @ResponseBody
+    public String getuserteam(Model model, @PathVariable long userid)  {
         model.addAttribute("userteam", boardService.finduserteam(userid));
         ObjectMapper mapper = new ObjectMapper();
         String teamsList = null;
